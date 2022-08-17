@@ -6,7 +6,9 @@ public class Tarea {
     public static void main(String[] args) {
         port(getPort());
         staticFiles.location("/public");
-//        get("/hello", (req, res) -> "Hello Heroku");
+        get("/hello", (req, res) -> {
+            String name = req.queryParams("name");
+            return "Hello Heroku" + name;});
         get("/intraday", (req, res) -> {
             res.type("application/json");
             return HttpConnection.getAPI();
